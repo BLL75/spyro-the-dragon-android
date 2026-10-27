@@ -1,72 +1,81 @@
-# 🐉 Proyecto: Actualización de la App de Spyro the Dragon
+# 🐉 Spyro The Dragon — Android Guide & Explorer
 
-## 📝 Introducción
-En esta actividad, actualizaremos una aplicación inspirada en el universo de *Spyro the Dragon* para mejorar su atractivo y usabilidad. Para ello, desarrollaremos dos elementos clave:
+![Android](https://img.shields.io/badge/Android-Java-3DDC84?style=for-the-badge&logo=android)
+![Arquitectura](https://img.shields.io/badge/Arquitectura-Fragments_%26_Navigation-informational?style=for-the-badge)
+![UI](https://img.shields.io/badge/Material_Design-CardView-blue?style=for-the-badge&logo=google)
+![IDE](https://img.shields.io/badge/Android_Studio-Ladybug%20%7C%20Koala-4285F4?style=for-the-badge&logo=androidstudio)
 
-- **Guía de inicio interactiva**: Introducirá al usuario en la app de forma visual y dinámica con animaciones, sonidos y elementos gráficos.
-- **Easter Egg**: Se añadirán elementos ocultos que sorprenderán y entretendrán a los usuarios.
+Una aplicación móvil nativa desarrollada en **Java para Android** inspirada en el universo del clásico videojuego **Spyro the Dragon**. El proyecto implementa una arquitectura modular basada en componentes de navegación modernos de Jetpack, adaptadores dinámicos para listas complejas y soporte de temas personalizados.
 
-## ✨ Características principales
-### 🏁 Guía de inicio interactiva
-1. **Pantalla 1**: Bienvenida a la guía interactiva con un fondo personalizado inspirado en *Spyro the Dragon* y un botón "Comenzar" con transición animada.
-2. **Pantalla 2**: Explicación de la pestaña *Personajes* con un bocadillo animado.
-3. **Pantalla 3**: Explicación de la pestaña *Mundos* con un bocadillo animado y opción de interacción automática.
-4. **Pantalla 4**: Explicación de la pestaña *Coleccionables* con un bocadillo animado.
-5. **Pantalla 5**: Explicación del icono de información con un bocadillo animado.
-6. **Pantalla 6**: Resumen final de la guía con botón para comenzar a usar la aplicación.
+---
 
-✔ **Navegación:**
-- Botón para avanzar en cada pantalla.
-- Botón para omitir la guía.
-- Bloqueo de interacción con la app mientras la guía está activa.
-- La guía solo se muestra la primera vez que se abre la app (usando *SharedPreferences*).
+## 📱 Características Principales
 
-✔ **Animaciones:**
-- Bocadillos animados con efectos de aparición, deslizamiento o ampliación.
-- Transiciones entre pantallas con efectos de desvanecimiento, desplazamiento lateral o escala.
+- **🧭 Navegación Fluida:** Implementación de `BottomNavigationView` integrada con el componente **Jetpack Navigation Graph** (`nav_graph.xml`) para transiciones limpias y gestión eficiente de la pila de fragmentos.
+- **🏰 Sección de Mundos:** Exploración de los reinos del juego mediante un `RecyclerView` personalizado que muestra imágenes, descripción y características de cada mundo en `CardView`.
+- **💎 Coleccionables y Joyas:** Catálogo interactivo de gemas, huevos de dragón y estatuas con información y conteo.
+- **🐲 Personajes y Guía Interactiva:** Vista detallada de personajes con bocadillos de diálogo personalizados (`bocadillo_personajes.xml`) estilo cómic/retro.
+- **🌓 Soporte Modo Noche / Día:** Adaptación completa a temas claros y oscuros respetando las directrices de Material Design.
+- **📄 Extracción de Datos:** Desacoplamiento de la lógica mediante recursos XML estructurados (`res/raw/characters.xml` y `worlds.xml`) parseados en tiempo de ejecución.
 
-✔ **Sonidos:**
-- Efectos de sonido temáticos al avanzar, interactuar con bocadillos y completar la guía.
+---
 
-### 🎁 Easter Eggs
-1. **Easter Egg con vídeo:**
-   - Ubicado en la pestaña de *Coleccionables*.
-   - Se activa tras pulsar cuatro veces sobre las *Gemas*.
-   - Reproduce un vídeo temático en pantalla completa antes de regresar a *Coleccionables*.
+## 🏗️ Arquitectura y Estructura del Código
 
-2. **Easter Egg con animación:**
-   - Ubicado en la pestaña de *Personajes*.
-   - Se activa con una pulsación prolongada sobre *Spyro*.
-   - Muestra una animación en *Canvas* simulando una llama de fuego saliendo de la boca de *Spyro*.
+El proyecto sigue una organización limpia por capas:
 
-## 🔧 Tecnologías utilizadas
-- **Java**: Lenguaje principal de desarrollo.
-- **Android Studio**: Entorno de desarrollo.
-- **SharedPreferences**: Para controlar la visualización única de la guía.
-- **Canvas API**: Para la animación del Easter Egg de Spyro.
-- **MediaPlayer**: Para la reproducción de sonidos y vídeo.
-
-## 🚀 Instrucciones de uso
-### Clonar el repositorio
-```sh
- git clone https://github.com/tu_usuario/tu_repositorio.git
- cd tu_repositorio
+```text
+dam.pmdm.spyrothedragon/
+│
+├── 📂 adapters/          # Adaptadores de RecyclerView optimizados
+│   ├── CharactersAdapter.java
+│   ├── CollectiblesAdapter.java
+│   └── WorldsAdapter.java
+│
+├── 📂 models/            # Modelos de dominio
+│   ├── Character.java
+│   ├── Collectible.java
+│   └── World.java
+│
+├── 📂 ui/                # Fragmentos de la interfaz de usuario
+│   ├── CharactersFragment.java
+│   ├── CollectiblesFragment.java
+│   └── WorldsFragment.java
+│
+├── MainActivity.java     # Host de navegación y barra inferior
+└── WelcomeActivity.java  # Pantalla de bienvenida / onboarding
 ```
-### Instalación de dependencias
-Asegúrate de tener *Android Studio* instalado. Luego, abre el proyecto y sincroniza las dependencias.
 
-### Ejecución
-1. Ejecuta la app en un emulador o dispositivo físico desde *Android Studio*.
-2. La guía de inicio interactiva se mostrará automáticamente al primer inicio.
-3. Explora la app y descubre los *Easter Eggs* ocultos.
+---
 
-## 🎯 Conclusiones del desarrollador
-El desarrollo de esta aplicación presentó varios desafíos y oportunidades de aprendizaje. Se implementaron elementos interactivos con el objetivo de enriquecer la experiencia del usuario y hacer que la navegación por la app fuera más atractiva e intuitiva. La integración de animaciones permitió que los elementos de la interfaz cobraran vida, facilitando la comprensión de las distintas secciones de la aplicación. Además, los efectos de sonido añadieron una capa de inmersión, reforzando la ambientación inspirada en *Spyro the Dragon*.
+## 🛠️ Tecnologías y Componentes Utilizados
 
-Uno de los aspectos más interesantes fue la incorporación de *Easter Eggs*, los cuales no solo ofrecen un elemento de sorpresa y diversión, sino que también incentivan la exploración dentro de la app. El uso de *SharedPreferences* permitió que la guía de inicio interactiva solo se mostrara una vez, garantizando una experiencia fluida sin interrupciones innecesarias.
+- **Lenguaje:** Java 11 / 17.
+- **Android SDK:** Min SDK 24 / Target SDK 34+.
+- **Android Jetpack:**
+  - Navigation Component (`NavController`, `NavHostFragment`).
+  - RecyclerView & CardView.
+- **Diseño de Interfaz:** ConstraintLayout, Drawables vectoriales personalizados (`.xml`), Material Components.
 
-En general, este proyecto representó una excelente oportunidad para aplicar conocimientos en diseño de interfaces, animaciones, manejo de eventos y almacenamiento de datos. Se logró un producto final atractivo, funcional y alineado con la temática del universo de *Spyro*, mejorando significativamente la usabilidad y el engagement del usuario.
+---
 
+## 🚀 Cómo Ejecutar el Proyecto
 
-## 📄 Licencia
-Este proyecto está bajo la licencia MIT. Puedes ver más detalles en el archivo LICENSE del repositorio.
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/BLL75/SpyroTheDragon.git
+   ```
+
+2. **Abrir en Android Studio:**
+   - Selecciona `File` > `Open` y elige la carpeta del proyecto.
+   - Deja que **Gradle** sincronice las dependencias del proyecto.
+
+3. **Ejecutar en Emulador o Dispositivo Físico:**
+   - Presiona `Shift + F10` o el botón verde **Run**.
+
+---
+
+## 👨‍💻 Autor
+
+- **Bernardo Luque** — [GitHub @BLL75](https://github.com/BLL75)
+- Proyecto desarrollado para el módulo de **Programación Multimedia y Dispositivos Móviles (DAM)**.
